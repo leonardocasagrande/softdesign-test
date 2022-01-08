@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Desafio técnico para Desenvolvedor Frontend da SoftDesign
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi desenvolvido para o desafio técnico para vaga de desenvolvedor front-end para a SoftDesign
 
-## Available Scripts
+## Instruções
 
-In the project directory, you can run:
+Neste projeto, para o armazenamento e criação de usuários, foi utilizado a biblioteca json-server.
 
-### `npm start`
+Para instalar, execute o seguinte comando:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm i -g json-server
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Após instalar o json-server, enquanto está com o terminal no diretório do projeto, execute o seguinte comando:
 
-### `npm test`
+```
+json-server --watch db.json -p 1234
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Com isso o servidor do projeto estará rodando.
 
-### `npm run build`
+Para rodar o projeto, em outro terminal, execute os seguintes comandos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para rodar os testes execute o seguinte comando:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run test
+```

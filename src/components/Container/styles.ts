@@ -8,4 +8,5 @@ export const Wrapper = styled.div`
   padding-right: 16px;
   max-width: 1024px;
   box-sizing: border-box;
+  margin-top: 16px;
 `;

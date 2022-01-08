@@ -1,4 +1,3 @@
-import Button from 'components/Button';
 import Container from 'components/Container';
 import ConfirmationDialog from 'components/dialogs/ConfirmationDialog';
 import DragonTable from 'components/DragonTable';
@@ -88,11 +87,15 @@ const App = () => {
       </Header>
       <ParticlesBackground />
       <AddWrapper>
-        <Button rounded variant="contained" onClick={handleNewDragon}>
-          <span className="material-icons big-icon">add</span>
-        </Button>
+        <IconButton
+          icon="add"
+          onClick={handleNewDragon}
+          variant="contained"
+          big
+          rounded
+        />
       </AddWrapper>
-      {!!dragons.length && (
+      {dragons.length ? (
         <div>
           <DragonTable
             data={dragons.slice(page * rowsPerPage, (page + 1) * rowsPerPage)}
@@ -107,6 +110,8 @@ const App = () => {
             count={dragons.length}
           />
         </div>
+      ) : (
+        <h4>Nenhum dado encontrado</h4>
       )}
       <ConfirmationDialog
         open={!!deletingDragon}
