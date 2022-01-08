@@ -1,23 +1,26 @@
-import React from 'react';
-import styles from './styles.module.css';
+import InputBase from 'components/InputBase';
+import React, { useState } from 'react';
+import { Input } from './styles';
 
-interface TTextInputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
+interface TTextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  id: string;
+  name: string;
+  errorText?: string;
 }
 
-const TextInput = ({ label, id, ...rest }: TTextInputProps) => {
+const TextInput = ({ label, name, errorText, ...rest }: TTextInputProps) => {
+  const [focused, setFocused] = useState(false);
   return (
-    <div>
-      <label className={styles.label} htmlFor={id}>
-        {label}
-      </label>
-      <input className={styles.input} id={id} type="text" {...rest} />
-    </div>
+    <InputBase
+      label={label}
+      name={name}
+      errorText={errorText}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      focused={focused}
+    >
+      <Input id={name} focused={focused} error={!!errorText} {...rest} />
+    </InputBase>
   );
 };
 

@@ -1,33 +1,22 @@
-import styles from './styles.module.css';
+import { TColor } from 'types';
+import Container from './styles';
 
-interface IButtonProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'contained' | 'outlined' | 'text';
-  // type?: 'button' | 'submit' | 'reset';
+  color?: TColor;
+  rounded?: boolean;
 }
 
-const Button = ({ variant = 'text', className, ...rest }: IButtonProps) => {
-  let classes: string;
-  switch (variant) {
-    case 'contained':
-      classes = `${styles.root} ${styles.contained}`;
-      break;
-    case 'outlined':
-      classes = `${styles.root} ${styles.outlined}`;
-      break;
-    case 'text':
-      classes = styles.root;
-      break;
-    default:
-      classes = '';
-  }
+const Button = ({
+  variant = 'text',
+  color = 'primary',
+  rounded = false,
+  ...rest
+}: IButtonProps) => {
   return (
-    <button className={`${classes} ${className}`} type="button" {...rest}>
+    <Container rounded={rounded} color={color} variant={variant} {...rest}>
       {rest.children}
-    </button>
+    </Container>
   );
 };
 

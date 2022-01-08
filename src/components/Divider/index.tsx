@@ -1,11 +1,10 @@
-import styles from './styles.module.css';
+import Container from 'components/Container';
 
-const Divider = ({
-  className,
-  ...rest
-}: React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->) => <div {...rest} className={`${styles.root} ${className}`} />;
+const Divider = (
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >
+) => <Container {...props} />;
 
 export default Divider;

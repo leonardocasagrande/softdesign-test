@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "username": "leonardo.casagrande@hitechnologies.com.br",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "username": "teste",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "username": "a",
+      "password": "123456",
+      "id": 3
+    }
+  ]
+}

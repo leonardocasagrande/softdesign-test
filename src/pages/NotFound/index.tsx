@@ -1,21 +1,25 @@
 import Button from 'components/Button';
 import Container from 'components/Container';
 import { useNavigate } from 'react-router-dom';
-import styles from './styles.module.css';
+import { Img, Text, Wrapper } from './styles';
 
 const NotFound = () => {
   const navigate = useNavigate();
   const handleGoBack = () => {
+    if (localStorage.getItem('username')) {
+      navigate('/app');
+      return;
+    }
     navigate('/');
   };
 
   return (
     <Container>
-      <div className={styles.wrapper}>
-        <h1 className={styles.text}>Página não encontrada</h1>
-        <img className={styles.img} src="404.jpg" alt="not-found" />
+      <Wrapper>
+        <Text>Página não encontrada</Text>
+        <Img src="404.jpg" alt="not-found" />
         <Button onClick={handleGoBack}>Voltar</Button>
-      </div>
+      </Wrapper>
     </Container>
   );
 };

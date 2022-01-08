@@ -1,12 +1,10 @@
-import { ReactNode } from 'react';
-import styles from './styles.module.css';
+import { Wrapper } from './styles';
 
-type TContainerProps = {
-  children: ReactNode;
-};
-
-const Container = ({ children }: TContainerProps) => {
-  return <div className={styles.wrapper}>{children}</div>;
+const Container = ({
+  children,
+  ...rest
+}: React.HTMLAttributes<HTMLDivElement>) => {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 export default Container;
