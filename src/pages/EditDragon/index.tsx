@@ -1,6 +1,6 @@
 import Container from 'components/Container';
 import DragonContainer from 'components/DragonContainer';
-import GoBackHeader from 'components/GoBackHeader';
+import IconButton from 'components/IconButton';
 import { useApp } from 'contexts/AppContext';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -43,7 +43,9 @@ const EditDragon = () => {
 
   return (
     <Container>
-      <GoBackHeader onGoBack={handleGoBack} />
+      <IconButton onClick={handleGoBack} icon="arrow_back">
+        Voltar
+      </IconButton>
       {!!dragon && <DragonContainer data={dragon} />}
     </Container>
   );

@@ -12,6 +12,7 @@
 body {
   font-family: "Open Sans", "Trebuchet MS", Helvetica, sans-serif;
   box-sizing: border-box;
+  margin: 0;
 }
 
 input:focus, textarea:focus, select:focus{
@@ -20,4 +21,8 @@ input:focus, textarea:focus, select:focus{
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0
+}
+
+.big-icon {
+  font-size: 35px;
 }

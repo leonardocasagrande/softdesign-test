@@ -2,6 +2,7 @@ import Button from 'components/Button';
 import Form from 'components/Form';
 import TextInput from 'components/TextInput';
 import { useApp } from 'contexts/AppContext';
+import { useAuth } from 'contexts/AuthContext';
 import { getIn, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { newUserSchema } from 'schemas/user';
@@ -9,6 +10,8 @@ import authService from 'services/auth';
 
 const CreateAccountForm = () => {
   const { setLoading, setErrorMessage, setSuccessMessage } = useApp();
+
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -22,7 +25,7 @@ const CreateAccountForm = () => {
           username: val.username,
           password: val.password,
         });
-        localStorage.setItem('username', val.username);
+        login(val.username);
         setSuccessMessage(`Bem vindo, ${val.username}`);
         navigate('/app');
       } catch (err) {

@@ -10,7 +10,7 @@ const AccountCard = () => {
   const [create, setCreate] = useState(false);
 
   return (
-    <Card>
+    <Card style={{ marginTop: 24 }}>
       <h4>{create ? 'Criar conta' : 'Entrar'}</h4>
       {create ? <CreateAccountForm /> : <LoginForm />}
       <Divider />

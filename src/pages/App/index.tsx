@@ -2,19 +2,28 @@ import Button from 'components/Button';
 import Container from 'components/Container';
 import ConfirmationDialog from 'components/dialogs/ConfirmationDialog';
 import DragonTable from 'components/DragonTable';
+import IconButton from 'components/IconButton';
+import Pagination from 'components/Pagination';
 import ParticlesBackground from 'components/ParticlesBackground';
 import { useApp } from 'contexts/AppContext';
+import { useAuth } from 'contexts/AuthContext';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dragonService from 'services/dragon';
 import { IDragon } from 'types';
+import { AddWrapper, Header } from './styles';
 
 const App = () => {
   const [dragons, setDragons] = useState<IDragon[]>([]);
 
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [page, setPage] = useState(0);
+
   const [deletingDragon, setDeletingDragon] = useState<number | null>(null);
 
   const { setLoading, setErrorMessage, setSuccessMessage } = useApp();
+
+  const { logout, username } = useAuth();
 
   const fetchDragons = useCallback(async () => {
     setLoading(true);
@@ -33,7 +42,8 @@ const App = () => {
 
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem('username');
+    setSuccessMessage(`Volte sempre, ${username}!`);
+    logout();
     navigate('/');
   };
 
@@ -64,21 +74,39 @@ const App = () => {
     }
   };
 
+  const handleChangeRowsPerPage = (rows: number) => {
+    setRowsPerPage(rows);
+    setPage(0);
+  };
+
   return (
     <Container>
+      <Header>
+        <IconButton icon="logout" variant="contained" onClick={handleLogout}>
+          Sair
+        </IconButton>
+      </Header>
       <ParticlesBackground />
-      <Button rounded variant="contained" onClick={handleLogout}>
-        <span className="material-icons">logout</span>
-      </Button>
-      <Button rounded variant="contained" onClick={handleNewDragon}>
-        <span className="material-icons">add</span>
-      </Button>
+      <AddWrapper>
+        <Button rounded variant="contained" onClick={handleNewDragon}>
+          <span className="material-icons big-icon">add</span>
+        </Button>
+      </AddWrapper>
       {!!dragons.length && (
-        <DragonTable
-          data={dragons}
-          onEdit={handleEditDragon}
-          onDelete={handleDeleteDragon}
-        />
+        <div>
+          <DragonTable
+            data={dragons.slice(page * rowsPerPage, (page + 1) * rowsPerPage)}
+            onEdit={handleEditDragon}
+            onDelete={handleDeleteDragon}
+          />
+          <Pagination
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            page={page}
+            onPageChange={setPage}
+            count={dragons.length}
+          />
+        </div>
       )}
       <ConfirmationDialog
         open={!!deletingDragon}

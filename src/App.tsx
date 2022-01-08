@@ -1,11 +1,14 @@
 import Switcher from 'components/Switcher';
 import { AppContextProvider } from 'contexts/AppContext';
+import { AuthContextProvider } from 'contexts/AuthContext';
 
 function App() {
   return (
-    <AppContextProvider>
-      <Switcher />
-    </AppContextProvider>
+    <AuthContextProvider>
+      <AppContextProvider>
+        <Switcher />
+      </AppContextProvider>
+    </AuthContextProvider>
   );
 }
 

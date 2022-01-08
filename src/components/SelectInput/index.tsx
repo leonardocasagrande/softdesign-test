@@ -2,7 +2,7 @@ import InputBase from 'components/InputBase';
 import { SelectHTMLAttributes, useState } from 'react';
 import { Select } from './styles';
 
-interface IOption {
+export interface IOption {
   value: any;
   label: string;
 }

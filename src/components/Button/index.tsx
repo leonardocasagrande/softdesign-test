@@ -1,7 +1,8 @@
 import { TColor } from 'types';
 import Container from './styles';
 
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'contained' | 'outlined' | 'text';
   color?: TColor;
   rounded?: boolean;

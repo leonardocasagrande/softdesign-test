@@ -9,10 +9,10 @@ const authService = {
     const params = {
       username: body.username,
     };
-    const { data } = await AuthAxios.get('/users', { params });
+    const { data } = await AuthAxios.get<IUser[]>('/users', { params });
     if (!data.length) throw new Error('Usuário não existe');
     if (data[0].password !== body.password) throw new Error('Senha incorreta');
-    return data[0];
+    return data[0].username;
   },
 };
 

@@ -1,6 +1,6 @@
 import Container from 'components/Container';
 import DragonContainer from 'components/DragonContainer';
-import GoBackHeader from 'components/GoBackHeader';
+import IconButton from 'components/IconButton';
 import { useNavigate } from 'react-router-dom';
 
 const NewDragon = () => {
@@ -10,7 +10,9 @@ const NewDragon = () => {
   };
   return (
     <Container>
-      <GoBackHeader onGoBack={handleGoBack} />
+      <IconButton onClick={handleGoBack} icon="arrow_back">
+        Voltar
+      </IconButton>
       <DragonContainer />
     </Container>
   );

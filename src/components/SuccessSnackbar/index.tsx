@@ -23,7 +23,7 @@ const SuccessSnackbar = ({
   return (
     <Container>
       {title}
-      <Button style={{ color: 'white', padding: 0 }} onClick={onClose}>
+      <Button style={{ padding: 0, color: 'white' }} onClick={onClose}>
         <span className="material-icons">close</span>
       </Button>
     </Container>

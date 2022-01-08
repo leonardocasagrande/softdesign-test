@@ -1,6 +1,6 @@
-import Button from 'components/Button';
+import IconButton from 'components/IconButton';
 import { IDragon } from 'types';
-import { StyledTable, Td, Th, Tr } from './styles';
+import { StyledTable, Td, Th, Tr, Wrapper } from './styles';
 
 interface IDragonTableProps {
   data: IDragon[];
@@ -10,7 +10,7 @@ interface IDragonTableProps {
 
 const DragonTable = ({ data, onEdit, onDelete }: IDragonTableProps) => {
   return (
-    <div>
+    <Wrapper>
       <StyledTable>
         <thead>
           <tr>
@@ -27,23 +27,19 @@ const DragonTable = ({ data, onEdit, onDelete }: IDragonTableProps) => {
               <Td>{el.type}</Td>
               <Td>{el.createdAt.toLocaleDateString('pt-br')}</Td>
               <Td>
-                <Button variant="text" rounded onClick={() => onEdit(el.id)}>
-                  <span className="material-icons">edit</span>
-                </Button>
-                <Button
-                  variant="text"
+                <IconButton icon="edit" rounded onClick={() => onEdit(el.id)} />
+                <IconButton
+                  icon="delete"
                   color="error"
                   rounded
                   onClick={() => onDelete(el.id)}
-                >
-                  <span className="material-icons">delete</span>
-                </Button>
+                />
               </Td>
             </Tr>
           ))}
         </tbody>
       </StyledTable>
-    </div>
+    </Wrapper>
   );
 };
 

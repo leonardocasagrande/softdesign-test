@@ -2,6 +2,7 @@ import Button from 'components/Button';
 import Form from 'components/Form';
 import TextInput from 'components/TextInput';
 import { useApp } from 'contexts/AppContext';
+import { useAuth } from 'contexts/AuthContext';
 import { getIn, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { userSchema } from 'schemas/user';
@@ -9,6 +10,8 @@ import authService from 'services/auth';
 
 const LoginForm = () => {
   const { setLoading, setErrorMessage, setSuccessMessage } = useApp();
+
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,9 +21,9 @@ const LoginForm = () => {
     onSubmit: async (val) => {
       setLoading(true);
       try {
-        const data = await authService.signin(val);
-        localStorage.setItem('username', data.username);
-        setSuccessMessage(`Bem vindo, ${val.username}`);
+        const username = await authService.signin(val);
+        login(username);
+        setSuccessMessage(`Bem vindo, ${username}`);
         navigate('/app');
       } catch (err) {
         if (err instanceof Error) {

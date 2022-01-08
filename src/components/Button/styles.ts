@@ -5,11 +5,22 @@ interface IContainerProps {
   color: TColor;
   variant: 'contained' | 'text' | 'outlined';
   rounded: boolean;
+  disabled?: boolean;
 }
 
+const getColor = (
+  disabled: boolean,
+  color: TColor,
+  variant: 'contained' | 'text' | 'outlined'
+) => {
+  if (disabled) return 'var(--disabled)';
+  if (variant === 'contained') return 'var(--white)';
+  return `var(--${color})`;
+};
+
 const Container = styled.button<IContainerProps>`
-  color: ${({ color, variant }) =>
-    `${variant === 'contained' ? 'var(--white)' : `var(--${color})`}`};
+  color: ${({ color, variant, disabled = false }) =>
+    getColor(disabled, color, variant)};
   padding: ${({ rounded }) => (rounded ? '8px' : '8px 16px')};
   border: 0;
   outline: 0;
@@ -19,9 +30,10 @@ const Container = styled.button<IContainerProps>`
   font-size: 0.85rem;
   text-transform: uppercase;
   background-color: transparent;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
-    border-color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    border-color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   box-shadow: ${({ variant }) =>
     `${
       variant === 'contained'
