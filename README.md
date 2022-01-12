@@ -32,6 +32,7 @@ Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador
 Para logar na plataforma, você pode criar um usuário, ou utilizar o seguinte usuário já existente:
 
 Usuário: softtest
+
 Senha: qwerty
 
 Para rodar os testes execute o seguinte comando:
