@@ -21,6 +21,7 @@ const SelectInput = ({
   errorText,
   options,
   emptyMessage = 'Selecione uma opção',
+  value,
   ...rest
 }: ISelectInputProps) => {
   const [focused, setFocused] = useState(false);
@@ -33,8 +34,14 @@ const SelectInput = ({
       onBlur={() => setFocused(false)}
       focused={focused}
     >
-      <Select focused={focused} error={!!errorText} id={name} {...rest}>
-        <option disabled selected value="">
+      <Select
+        value={value ?? ''}
+        focused={focused}
+        error={!!errorText}
+        id={name}
+        {...rest}
+      >
+        <option disabled value="">
           {emptyMessage}
         </option>
         {options.map((opt) => (
