@@ -5,13 +5,9 @@ export const userSchema = yup.object({
     .string()
     .required('Login é obrigatório')
     .max(128, 'Máximo de caracteres permitidos é 128')
-    .default(''),
-  password: yup
-    .string()
-    .required('Senha é obrigatória')
-    .min(6, 'A senha deve ter no mínimo 6 caracteres')
-    .max(32, 'A senha deve ter no máximo 32 caracteres')
-    .default(''),
+    .default('')
+    .trim(),
+  password: yup.string().required('Senha é obrigatória').default(''),
 });
 
 export const newUserSchema = yup.object({
@@ -19,7 +15,8 @@ export const newUserSchema = yup.object({
     .string()
     .required('Login é obrigatório')
     .max(128, 'Máximo de caracteres permitidos é 128')
-    .default(''),
+    .default('')
+    .trim(),
   password: yup
     .string()
     .required('Senha é obrigatória')
